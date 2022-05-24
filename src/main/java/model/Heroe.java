@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
 
 
 /**
@@ -16,7 +15,6 @@ public class Heroe implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codHeroe;
 
 	private String aliasHeroe;
@@ -26,10 +24,6 @@ public class Heroe implements Serializable {
 	private int codPoder;
 
 	private boolean estado;
-	
-	@Temporal(TemporalType.DATE)
-	@Column(name="fecNacHeroe")
-	private Date fecNacHeroe;
 
 	private String lugarNacHeroe;
 
@@ -88,14 +82,6 @@ public class Heroe implements Serializable {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
-	}
-
-	public Date getFecNacHeroe() {
-		return this.fecNacHeroe;
-	}
-
-	public void setFecNacHeroe(Date fecNacHeroe) {
-		this.fecNacHeroe = fecNacHeroe;
 	}
 
 	public String getLugarNacHeroe() {
