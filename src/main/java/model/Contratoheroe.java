@@ -22,7 +22,8 @@ public class Contratoheroe implements Serializable {
 	private Empresa empresa;
 
 	//bi-directional one-to-one association to Heroe
-	@OneToOne(mappedBy="contratoheroe")
+	@OneToOne
+	@JoinColumn(name="codHeroe")
 	private Heroe heroe;
 
 	public Contratoheroe() {

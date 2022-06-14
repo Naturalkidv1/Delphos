@@ -8,7 +8,7 @@
 		<class>model.ContratoheroePK</class>
 		<class>model.Empresa</class>
 		<class>model.Heroe</class>
-		<class>model.Podere</class>
+		<class>model.Poder</class>
 
 		<properties>
 

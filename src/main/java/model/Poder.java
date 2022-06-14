@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -10,8 +11,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="poderes")
-@NamedQuery(name="Podere.findAll", query="SELECT p FROM Podere p")
-public class Podere implements Serializable {
+@NamedQuery(name="Poder.findAll", query="SELECT p FROM Poder p")
+public class Poder implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,11 +24,11 @@ public class Podere implements Serializable {
 
 	private char rangoPoder;
 
-	//bi-directional one-to-one association to Heroe
-	@OneToOne(mappedBy="podere")
-	private Heroe heroe;
+	//bi-directional many-to-one association to Heroe
+	@OneToMany(mappedBy="poder")
+	private List<Heroe> heroes;
 
-	public Podere() {
+	public Poder() {
 	}
 
 	public int getCodPoder() {
@@ -62,12 +63,26 @@ public class Podere implements Serializable {
 		this.rangoPoder = rangoPoder;
 	}
 
-	public Heroe getHeroe() {
-		return this.heroe;
+	public List<Heroe> getHeroes() {
+		return this.heroes;
 	}
 
-	public void setHeroe(Heroe heroe) {
-		this.heroe = heroe;
+	public void setHeroes(List<Heroe> heroes) {
+		this.heroes = heroes;
+	}
+
+	public Heroe addHeroe(Heroe heroe) {
+		getHeroes().add(heroe);
+		heroe.setPoderes(this);
+
+		return heroe;
+	}
+
+	public Heroe removeHeroe(Heroe heroe) {
+		getHeroes().remove(heroe);
+		heroe.setPoderes(null);
+
+		return heroe;
 	}
 
 }

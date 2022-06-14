@@ -21,8 +21,6 @@ public class Heroe implements Serializable {
 
 	private String apellHeroe;
 
-	private int codPoder;
-
 	private boolean estado;
 
 	private String lugarNacHeroe;
@@ -32,14 +30,13 @@ public class Heroe implements Serializable {
 	private String organizacion;
 
 	//bi-directional one-to-one association to Contratoheroe
-	@OneToOne
-	@JoinColumn(name="codHeroe", referencedColumnName="codHeroe")
+	@OneToOne(mappedBy="heroe")
 	private Contratoheroe contratoheroe;
 
-	//bi-directional one-to-one association to Podere
-	@OneToOne
-	@JoinColumn(name="codHeroe")
-	private Podere podere;
+	//bi-directional many-to-one association to Podere
+	@ManyToOne
+	@JoinColumn(name="codPoder")
+	private Poder poder;
 
 	public Heroe() {
 	}
@@ -66,14 +63,6 @@ public class Heroe implements Serializable {
 
 	public void setApellHeroe(String apellHeroe) {
 		this.apellHeroe = apellHeroe;
-	}
-
-	public int getCodPoder() {
-		return this.codPoder;
-	}
-
-	public void setCodPoder(int codPoder) {
-		this.codPoder = codPoder;
 	}
 
 	public boolean getEstado() {
@@ -116,12 +105,17 @@ public class Heroe implements Serializable {
 		this.contratoheroe = contratoheroe;
 	}
 
-	public Podere getPodere() {
-		return this.podere;
+	public Poder getPoderes() {
+		return this.poder;
 	}
 
-	public void setPodere(Podere podere) {
-		this.podere = podere;
+	public void setPoderes(Poder poder) {
+		this.poder = poder;
 	}
+	
+	@Override
+    public String toString() {
+        return nomHeroe + " " + apellHeroe + " - " + aliasHeroe;
+    }
 
 }
