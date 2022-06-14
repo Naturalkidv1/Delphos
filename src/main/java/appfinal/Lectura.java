@@ -17,7 +17,7 @@ public class Lectura {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("delphos");
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
-		//Se crea la Query a partir de la NamedQuery de la clase Vehículo
+		//Se crea la Query a partir de la NamedQuery de la clase Heroe
 		Query q = em.createNamedQuery("Heroe.findAll");
 		
 		// Se ejecuta la consulta con getResultList haciendo un casting
